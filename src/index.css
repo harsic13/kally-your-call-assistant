@@ -194,3 +194,15 @@
 .animate-progress {
   animation: progress-fill 8s linear infinite;
 }
+
+/* Float animation for call modal icon */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Waveform scale animation */
+@keyframes waveform-scale {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.3); }
+}
