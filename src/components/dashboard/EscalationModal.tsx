@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X, MessageSquare, Radio, List, CheckCircle, Clock, Send, AlertCircle } from "lucide-react";
+import { X, MessageSquare, Radio, List, CheckCircle, Clock, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface EscalationModalProps {
@@ -18,10 +18,10 @@ const liveBubbles = [
 ];
 
 const summarySteps = [
-  { done: true, text: "Connected to Amazon after 2 min hold time" },
-  { done: true, text: "Reported order not received — rep confirmed delivery marked Feb 18" },
-  { done: true, text: "Rep offered 2 options — full refund of $43 or replacement item" },
-  { done: false, text: "Waiting for your preference — Kally is currently on hold" },
+  { done: true, bold: "Connected to Amazon", rest: " after 2 min hold time" },
+  { done: true, bold: "Reported order not received", rest: ", rep confirmed delivery marked Feb 18" },
+  { done: true, bold: "Rep offered 2 options", rest: ", full refund of $43 or replacement item" },
+  { done: false, bold: "Waiting for your preference", rest: ", Kally is currently on hold" },
 ];
 
 const tabs = [
@@ -44,10 +44,10 @@ const EscalationModal = ({ open, onClose }: EscalationModalProps) => {
 
       {/* Modal */}
       <div
-        className="relative w-[460px] max-h-[85vh] bg-card rounded-2xl overflow-hidden animate-spring-up flex flex-col"
+        className="relative w-[460px] max-h-[85vh] bg-card rounded-3xl overflow-hidden animate-spring-up flex flex-col"
         style={{
-          border: "1px solid rgba(239,68,68,0.35)",
-          boxShadow: "0 30px 80px rgba(0,0,0,0.15), 0 0 40px rgba(239,68,68,0.06)",
+          border: "1px solid rgba(239,68,68,0.3)",
+          boxShadow: "0 30px 80px rgba(0,0,0,0.12), 0 0 40px rgba(239,68,68,0.04)",
         }}
       >
         {/* Header */}
@@ -60,7 +60,7 @@ const EscalationModal = ({ open, onClose }: EscalationModalProps) => {
               </div>
               <p className="font-mono-label text-muted-foreground">Amazon Refund · Order #112-884 · On hold now</p>
             </div>
-            <button onClick={onClose} className="w-7 h-7 rounded-lg hover:bg-accent flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
+            <button onClick={onClose} className="w-7 h-7 rounded-xl hover:bg-accent flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
               <X size={16} />
             </button>
           </div>
@@ -89,7 +89,7 @@ const EscalationModal = ({ open, onClose }: EscalationModalProps) => {
           {/* Message tab */}
           {activeTab === "message" && (
             <div className="space-y-4">
-              <div className="p-3.5 rounded-[10px]" style={{ background: "rgba(239,68,68,0.07)", border: "1px solid rgba(239,68,68,0.2)" }}>
+              <div className="p-3.5 rounded-2xl" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
                 <p className="font-mono-label text-destructive mb-1.5" style={{ fontSize: "0.6rem" }}>AGENT'S QUESTION</p>
                 <p className="text-foreground" style={{ fontSize: "0.88rem" }}>
                   Amazon is offering a full refund ($43) or a replacement item. Which would you prefer?
@@ -101,12 +101,12 @@ const EscalationModal = ({ open, onClose }: EscalationModalProps) => {
                   <button
                     key={reply}
                     onClick={() => setSelectedReply(reply)}
-                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg transition-all duration-200 ${
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl transition-all duration-200 ${
                       selectedReply === reply
                         ? "bg-primary-dim border border-primary/40 text-primary font-semibold"
                         : "bg-accent border border-border text-muted-foreground"
                     }`}
-                    style={{ fontSize: "0.78rem", borderRadius: "8px" }}
+                    style={{ fontSize: "0.78rem" }}
                   >
                     {selectedReply === reply && <CheckCircle size={13} />}
                     {reply}
@@ -120,9 +120,9 @@ const EscalationModal = ({ open, onClose }: EscalationModalProps) => {
                   value={customMsg}
                   onChange={(e) => setCustomMsg(e.target.value)}
                   placeholder="Or type a custom instruction..."
-                  className="flex-1 h-10 px-3 rounded-lg bg-accent border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-body transition-all"
+                  className="flex-1 h-10 px-3 rounded-xl bg-accent border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-body transition-all"
                 />
-                <Button variant="default" size="icon-sm" className="shrink-0 h-10 w-10">
+                <Button variant="default" size="icon-sm" className="shrink-0 h-10 w-10 rounded-xl">
                   <Send size={14} />
                 </Button>
               </div>
@@ -145,8 +145,8 @@ const EscalationModal = ({ open, onClose }: EscalationModalProps) => {
                       <div
                         className={`max-w-[80%] px-3 py-2 text-body ${
                           isKally
-                            ? "bg-primary-dim text-foreground rounded-lg rounded-br-sm"
-                            : "bg-accent text-muted-foreground rounded-lg rounded-bl-sm"
+                            ? "bg-primary-dim text-foreground rounded-xl rounded-br-sm"
+                            : "bg-accent text-muted-foreground rounded-xl rounded-bl-sm"
                         } ${(msg as any).highlight ? "border border-primary animate-pulse-border" : ""}`}
                         style={{ fontSize: "0.8rem" }}
                       >
@@ -170,8 +170,7 @@ const EscalationModal = ({ open, onClose }: EscalationModalProps) => {
                     {step.done ? <CheckCircle size={12} className="text-success-foreground" /> : <Clock size={10} className="text-secondary" />}
                   </div>
                   <p className={`text-foreground ${!step.done ? "text-secondary" : ""}`} style={{ fontSize: "0.8rem" }}>
-                    <span className="font-bold">{step.text.split("—")[0]}</span>
-                    {step.text.includes("—") ? "—" + step.text.split("—").slice(1).join("—") : ""}
+                    <span className="font-bold">{step.bold}</span>{step.rest}
                   </p>
                 </div>
               ))}

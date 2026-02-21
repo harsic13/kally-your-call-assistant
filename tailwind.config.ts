@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Fraunces", "serif"],
+        display: ["Plus Jakarta Sans", "sans-serif"],
         sans: ["Plus Jakarta Sans", "sans-serif"],
         mono: ["Space Mono", "monospace"],
       },

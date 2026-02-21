@@ -92,7 +92,7 @@ const Dashboard = () => {
           <div className="relative w-7 h-7">
             <div className="absolute inset-0 rounded-full border-2 border-primary animate-spin" style={{ animationDuration: "6s" }} />
           </div>
-          <span className="font-display text-base font-bold text-foreground">Kally</span>
+          <span className="font-display text-base text-foreground">Kally</span>
         </Link>
 
         <div className="flex-1 flex justify-center">
@@ -101,8 +101,8 @@ const Dashboard = () => {
               <button
                 key={tab}
                 onClick={() => handleTabClick(tab)}
-                className={`px-4 py-1.5 rounded-full font-mono-sm transition-all duration-200
-                  ${activeTab === tab && tab !== "Escalation" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200
+                  ${activeTab === tab && tab !== "Escalation" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}
                 `}
               >
                 {tab}
@@ -120,7 +120,6 @@ const Dashboard = () => {
       <div className={`flex-1 flex overflow-hidden ${escalationOpen ? "filter blur-[3px] opacity-35 pointer-events-none" : ""}`}>
         {activeTab === "Tasks" && (
           <>
-            {/* Left panel — Tasks */}
             <div className="flex-1 overflow-y-auto p-6">
               <div className="flex items-end justify-between mb-6">
                 <div>
@@ -136,14 +135,14 @@ const Dashboard = () => {
                     value={newTask}
                     onChange={(e) => setNewTask(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && addTask()}
-                    placeholder="Tell Kally what to handle — type or speak..."
-                    className="w-full h-11 pl-4 pr-4 rounded-xl bg-accent border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-body transition-all"
+                    placeholder="Tell Kally what to handle..."
+                    className="w-full h-11 pl-4 pr-4 rounded-2xl bg-accent border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-body transition-all"
                   />
                 </div>
-                <Button variant="icon-circle" size="icon" className="shrink-0">
+                <Button variant="icon-circle" size="icon" className="shrink-0 rounded-2xl">
                   <Mic size={18} />
                 </Button>
-                <Button variant="icon-filled" size="icon" className="shrink-0" onClick={addTask}>
+                <Button variant="icon-filled" size="icon" className="shrink-0 rounded-2xl" onClick={addTask}>
                   <Send size={18} />
                 </Button>
               </div>
@@ -153,8 +152,8 @@ const Dashboard = () => {
                   <button
                     key={f}
                     onClick={() => setFilter(f)}
-                    className={`px-3 py-1.5 rounded-lg font-mono-label transition-all ${
-                      filter === f ? "bg-accent border border-primary/30 text-foreground" : "text-muted-foreground hover:text-foreground"
+                    className={`px-3 py-1.5 rounded-xl font-mono-label transition-all ${
+                      filter === f ? "bg-accent border border-primary/20 text-foreground" : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     {f}
@@ -176,7 +175,6 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Right panel — Calendar */}
             <div className="hidden lg:block w-[300px] border-l border-border overflow-y-auto p-4 space-y-4">
               <CalendarWidget selectedDate={selectedDate} onSelectDate={setSelectedDate} taskDates={[todayStr]} />
               <div>
@@ -204,10 +202,7 @@ const Dashboard = () => {
         {activeTab === "Post-Call" && <PostCallScreen />}
       </div>
 
-      {/* Escalation Modal */}
       <EscalationModal open={escalationOpen} onClose={() => setEscalationOpen(false)} />
-
-      {/* Call Modal */}
       <CallModal
         open={callModal.open}
         onClose={() => setCallModal({ open: false, title: "", icon: "package" })}

@@ -5,84 +5,84 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 220 20% 14%;
+    --foreground: 30 5% 12%;
 
-    --card: 36 30% 96%;
-    --card-foreground: 220 20% 14%;
+    --card: 35 33% 95%;
+    --card-foreground: 30 5% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 14%;
+    --popover-foreground: 30 5% 12%;
 
-    --primary: 25 95% 53%;
+    --primary: 24 94% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 36 30% 93%;
-    --secondary-foreground: 220 20% 14%;
+    --secondary: 35 33% 92%;
+    --secondary-foreground: 30 5% 12%;
 
-    --muted: 36 20% 96%;
-    --muted-foreground: 220 10% 46%;
+    --muted: 35 20% 96%;
+    --muted-foreground: 30 5% 45%;
 
-    --accent: 36 30% 96%;
-    --accent-foreground: 220 20% 14%;
+    --accent: 35 33% 95%;
+    --accent-foreground: 30 5% 12%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 142 71% 45%;
+    --success: 152 60% 42%;
     --success-foreground: 0 0% 100%;
 
     --info: 217 91% 60%;
     --info-foreground: 0 0% 100%;
 
-    --border: 220 10% 92%;
-    --input: 220 10% 92%;
-    --ring: 25 95% 53%;
+    --border: 30 10% 90%;
+    --input: 30 10% 90%;
+    --ring: 24 94% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    --surface-2: 36 25% 97%;
-    --surface-3: 36 30% 95%;
-    --primary-dim: 25 95% 53% / 0.08;
-    --border-strong: 220 10% 82%;
+    --surface-2: 35 25% 96%;
+    --surface-3: 35 30% 94%;
+    --primary-dim: 24 94% 50% / 0.08;
+    --border-strong: 30 10% 80%;
 
     --sidebar-background: 0 0% 99%;
-    --sidebar-foreground: 220 20% 14%;
-    --sidebar-primary: 25 95% 53%;
+    --sidebar-foreground: 30 5% 12%;
+    --sidebar-primary: 24 94% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 36 30% 96%;
-    --sidebar-accent-foreground: 220 20% 14%;
-    --sidebar-border: 220 10% 92%;
-    --sidebar-ring: 25 95% 53%;
+    --sidebar-accent: 35 33% 95%;
+    --sidebar-accent-foreground: 30 5% 12%;
+    --sidebar-border: 30 10% 90%;
+    --sidebar-ring: 24 94% 50%;
   }
 
   .dark {
-    --background: 220 20% 10%;
-    --foreground: 36 20% 96%;
-    --card: 220 18% 14%;
-    --card-foreground: 36 20% 96%;
-    --popover: 220 18% 14%;
-    --popover-foreground: 36 20% 96%;
-    --primary: 25 95% 53%;
+    --background: 30 5% 8%;
+    --foreground: 35 20% 96%;
+    --card: 30 8% 13%;
+    --card-foreground: 35 20% 96%;
+    --popover: 30 8% 13%;
+    --popover-foreground: 35 20% 96%;
+    --primary: 24 94% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 15% 20%;
-    --secondary-foreground: 36 20% 96%;
-    --muted: 220 15% 18%;
-    --muted-foreground: 220 10% 55%;
-    --accent: 220 15% 18%;
-    --accent-foreground: 36 20% 96%;
+    --secondary: 30 10% 18%;
+    --secondary-foreground: 35 20% 96%;
+    --muted: 30 8% 16%;
+    --muted-foreground: 30 10% 55%;
+    --accent: 30 8% 16%;
+    --accent-foreground: 35 20% 96%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 25 95% 53%;
-    --sidebar-background: 220 18% 12%;
-    --sidebar-foreground: 36 20% 96%;
-    --sidebar-primary: 25 95% 53%;
+    --border: 30 8% 18%;
+    --input: 30 8% 18%;
+    --ring: 24 94% 50%;
+    --sidebar-background: 30 8% 10%;
+    --sidebar-foreground: 35 20% 96%;
+    --sidebar-primary: 24 94% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 15% 18%;
-    --sidebar-accent-foreground: 36 20% 96%;
-    --sidebar-border: 220 15% 20%;
-    --sidebar-ring: 25 95% 53%;
+    --sidebar-accent: 30 8% 16%;
+    --sidebar-accent-foreground: 35 20% 96%;
+    --sidebar-border: 30 8% 18%;
+    --sidebar-ring: 24 94% 50%;
   }
 }
 
@@ -94,23 +94,28 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
   h1, h2, h3, h4 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
   }
 }
 
 @layer components {
   .font-display {
-    font-family: 'Fraunces', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
   }
   .font-mono-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    color: hsl(var(--muted-foreground));
   }
   .font-mono-sm {
-    font-family: 'Space Mono', monospace;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.75rem;
+    font-weight: 500;
   }
 }
 
@@ -118,15 +123,15 @@
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(100px);
   pointer-events: none;
   z-index: 0;
 }
 .blob-orange {
-  background: hsla(25, 95%, 53%, 0.04);
+  background: hsla(24, 94%, 50%, 0.03);
 }
 .blob-light {
-  background: hsla(36, 30%, 80%, 0.06);
+  background: hsla(35, 33%, 80%, 0.05);
 }
 
 /* Scrolling chips animation */
@@ -140,8 +145,8 @@
 
 /* Pulse border for escalated items */
 @keyframes pulse-border {
-  0%, 100% { border-color: hsla(0, 84%, 60%, 0.2); box-shadow: 0 0 0 0 hsla(0, 84%, 60%, 0.05); }
-  50% { border-color: hsla(0, 84%, 60%, 0.5); box-shadow: 0 0 10px 2px hsla(0, 84%, 60%, 0.08); }
+  0%, 100% { border-color: hsla(0, 84%, 60%, 0.15); box-shadow: 0 0 0 0 hsla(0, 84%, 60%, 0.03); }
+  50% { border-color: hsla(0, 84%, 60%, 0.4); box-shadow: 0 0 8px 2px hsla(0, 84%, 60%, 0.06); }
 }
 .animate-pulse-border {
   animation: pulse-border 2s ease-in-out infinite;
