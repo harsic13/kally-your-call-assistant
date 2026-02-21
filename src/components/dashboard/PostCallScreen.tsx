@@ -24,16 +24,9 @@ interface TranscriptBubble {
 
 const transcript: TranscriptBubble[] = [
   { speaker: "priya", text: "Hey, who's this?" },
-  { speaker: "kally", text: "Hi Priya, this is Harshitha's assistant calling. She wanted to check if you could book 2 tickets for Interstellar tonight — the 7:45pm showing at AMC?" },
+  { speaker: "kally", text: "Hi Priya, this is Harshitha's assistant calling. She wanted to check if you could book 2 tickets for Interstellar tonight, the 7:45pm showing at AMC?" },
   { speaker: "priya", text: "Oh yeah totally, I was going to text her! I'll book it right now." },
   { speaker: "kally", text: "Perfect, she'll meet you there. Thanks Priya, have a great evening!" },
-];
-
-const videoSteps = [
-  "Reached Priya after 1 ring",
-  "Requested 2 tickets for Interstellar",
-  "Priya confirmed booking",
-  "Call complete — task resolved",
 ];
 
 const PostCallScreen = () => {
@@ -54,14 +47,14 @@ const PostCallScreen = () => {
               <button
                 key={call.id}
                 onClick={() => setSelectedId(call.id)}
-                className={`w-full text-left p-3 rounded-xl transition-all duration-200 border-l-[3px] ${
+                className={`w-full text-left p-3 rounded-2xl transition-all duration-200 border-l-[3px] ${
                   selectedId === call.id
                     ? "border-l-primary bg-primary-dim"
                     : "border-l-transparent hover:bg-accent"
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-primary-dim flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-xl bg-primary-dim flex items-center justify-center shrink-0">
                     <Icon size={14} className="text-primary" />
                   </div>
                   <div className="min-w-0">
@@ -79,13 +72,13 @@ const PostCallScreen = () => {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header + outcome */}
         <div className="p-6 pb-0">
-          <h2 className="font-display text-2xl font-bold text-foreground mb-3">
+          <h2 className="font-display text-2xl text-foreground mb-3">
             Called Priya · Interstellar tickets tonight
           </h2>
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-success/8 border border-success/25">
+          <div className="flex items-center gap-3 p-3 rounded-2xl bg-success/8 border border-success/25">
             <CheckCircle size={18} className="text-success shrink-0" />
             <p className="text-body font-bold text-success">
-              Priya confirmed — booking 2 tickets, 7:45pm show at AMC
+              Priya confirmed, booking 2 tickets, 7:45pm show at AMC
             </p>
           </div>
         </div>
@@ -103,8 +96,7 @@ const PostCallScreen = () => {
               return (
                 <div key={i} className={`flex ${isKally ? "justify-end" : "justify-start"}`}>
                   <div className={`flex items-start gap-2 max-w-[85%] ${isKally ? "flex-row-reverse" : ""}`}>
-                    {/* Avatar */}
-                    <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-[0.55rem] font-bold ${
+                    <div className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 text-[0.55rem] font-bold ${
                       isKally ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
                     }`}>
                       {isKally ? "K" : "P"}
@@ -115,8 +107,8 @@ const PostCallScreen = () => {
                       </p>
                       <div className={`px-3.5 py-2.5 text-body ${
                         isKally
-                          ? "bg-primary-dim text-foreground rounded-[10px] rounded-br-sm"
-                          : "bg-surface-2 text-muted-foreground rounded-[10px] rounded-bl-sm"
+                          ? "bg-primary-dim text-foreground rounded-2xl rounded-br-sm"
+                          : "bg-surface-2 text-muted-foreground rounded-2xl rounded-bl-sm"
                       }`}>
                         {msg.text}
                       </div>
@@ -128,23 +120,23 @@ const PostCallScreen = () => {
           </div>
         </div>
 
-        {/* Bottom bar — Video summary */}
+        {/* Bottom bar */}
         <div className="border-t border-border p-4">
           {showVideo && (
-            <div className="mb-3 rounded-xl overflow-hidden animate-spring-up" style={{ background: "#1C1412" }}>
+            <div className="mb-3 rounded-2xl overflow-hidden animate-spring-up" style={{ background: "#1C1917" }}>
               <div className="h-[90px] flex items-center justify-center px-6">
                 <p className="font-display text-sm text-primary-foreground text-center animate-pulse">
                   Reached Priya after 1 ring...
                 </p>
               </div>
               <div className="h-1 w-full bg-muted-foreground/20">
-                <div className="h-full animate-progress" style={{ background: "linear-gradient(90deg, hsl(25 95% 53%), hsl(217 91% 60%))" }} />
+                <div className="h-full animate-progress" style={{ background: "linear-gradient(90deg, hsl(24 94% 50%), hsl(217 91% 60%))" }} />
               </div>
             </div>
           )}
           <Button
             variant="outline"
-            className="w-full h-11 gap-2 border-primary/30 text-primary hover:bg-primary-dim font-semibold"
+            className="w-full h-11 gap-2 border-primary/30 text-primary hover:bg-primary-dim font-semibold rounded-2xl"
             style={{ background: "linear-gradient(90deg, rgba(249,115,22,0.06), rgba(59,130,246,0.06))" }}
             onClick={() => setShowVideo(!showVideo)}
           >

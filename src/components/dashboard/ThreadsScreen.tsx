@@ -29,7 +29,7 @@ const threadDetails: Record<string, { title: string; subtitle: string; steps: Ti
     subtitle: "3 calls · Started Feb 20 · In progress",
     steps: [
       { type: "completed", label: "Call 1 · Feb 20, 9:14 AM · 6 min", description: "Reached Amazon support. Reported item not delivered. Rep opened case #AMZ-9921 and asked to call back in 24 hours." },
-      { type: "escalated", label: "Call 2 · Feb 21, 10:02 AM · 4 min", description: "Called back. Rep offered replacement or full refund. Escalated to user — waiting on preference.", highlightPhrase: "Escalated to user" },
+      { type: "escalated", label: "Call 2 · Feb 21, 10:02 AM · 4 min", description: "Called back. Rep offered replacement or full refund. Escalated to user, waiting on preference.", highlightPhrase: "Escalated to user" },
       { type: "pending", label: "Call 3 · Pending user response", description: "Will call back once user confirms: refund or replacement." },
     ],
   },
@@ -63,7 +63,7 @@ const ThreadsScreen = () => {
 
   return (
     <div className="flex-1 flex overflow-hidden">
-      {/* Left panel — Thread list */}
+      {/* Left panel */}
       <div className="w-[280px] border-r border-border overflow-y-auto p-5">
         <h1 className="font-display text-page-title text-foreground mb-1">Threads</h1>
         <p className="font-mono-label text-muted-foreground mb-5">{threads.filter(t => t.status !== "resolved").length} ACTIVE THREADS</p>
@@ -73,14 +73,14 @@ const ThreadsScreen = () => {
             <button
               key={thread.id}
               onClick={() => setSelectedId(thread.id)}
-              className={`w-full text-left p-3 rounded-xl transition-all duration-200 border-l-[3px] ${
+              className={`w-full text-left p-3 rounded-2xl transition-all duration-200 border-l-[3px] ${
                 selectedId === thread.id
                   ? "border-l-primary bg-primary-dim"
                   : "border-l-transparent hover:bg-accent"
               }`}
             >
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-primary-dim flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-8 h-8 rounded-xl bg-primary-dim flex items-center justify-center shrink-0 mt-0.5">
                   <Repeat size={14} className="text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -96,10 +96,10 @@ const ThreadsScreen = () => {
         </div>
       </div>
 
-      {/* Right panel — Thread detail */}
+      {/* Right panel */}
       <div className="flex-1 overflow-y-auto p-6">
         <div className="mb-8">
-          <h2 className="font-display text-2xl font-bold text-foreground">{detail.title}</h2>
+          <h2 className="font-display text-2xl text-foreground">{detail.title}</h2>
           <p className="font-mono-label text-muted-foreground mt-1">{detail.subtitle}</p>
         </div>
 
@@ -109,7 +109,6 @@ const ThreadsScreen = () => {
             const isLast = i === detail.steps.length - 1;
             return (
               <div key={i} className="flex gap-4">
-                {/* Connector + circle */}
                 <div className="flex flex-col items-center">
                   <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${
                     step.type === "completed" ? "bg-primary" :
@@ -125,7 +124,6 @@ const ThreadsScreen = () => {
                   )}
                 </div>
 
-                {/* Content */}
                 <div className={`pb-8 ${isLast ? "pb-0" : ""}`}>
                   <p className="font-mono-label text-muted-foreground mb-1">{step.label}</p>
                   <p className={`text-body ${step.type === "pending" ? "text-muted-foreground" : "text-foreground"}`}>

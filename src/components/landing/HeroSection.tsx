@@ -21,26 +21,26 @@ const HeroSection = () => {
 
             <h1 className="opacity-0 animate-fade-up delay-100 font-display text-page-title lg:text-5xl text-foreground leading-tight">
               You've got places to be.{" "}
-              <span className="italic text-primary">We'll call.</span>
+              <span className="text-primary">We'll call.</span>
             </h1>
 
             <p className="opacity-0 animate-fade-up delay-200 text-body text-muted-foreground max-w-md">
-              Kally is your AI voice agent that handles phone calls on your behalf — from customer support to reservations to awkward reminders. Just type what you need, and Kally takes care of the rest.
+              Kally is your AI voice agent that handles phone calls on your behalf. From customer support to reservations to awkward reminders, just type what you need and Kally takes care of the rest.
             </p>
 
             <div className="opacity-0 animate-fade-up delay-300 flex flex-col sm:flex-row gap-3 max-w-md">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 h-12 px-4 rounded-xl bg-card border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-body transition-all"
+                className="flex-1 h-12 px-4 rounded-2xl bg-card border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-body transition-all"
               />
-              <Button variant="hero" size="lg" className="gap-2">
+              <Button variant="hero" size="lg" className="gap-2 rounded-2xl">
                 Get Started <ArrowRight size={18} />
               </Button>
             </div>
           </div>
 
-          {/* Right column — phone mockup */}
+          {/* Right column phone mockup */}
           <div className="relative z-10 flex justify-center opacity-0 animate-fade-up delay-400">
             <div className="relative w-72 h-[500px] rounded-[2.5rem] bg-card border-2 border-border shadow-2xl overflow-hidden">
               {/* Phone notch */}
@@ -55,12 +55,12 @@ const HeroSection = () => {
                   <img src={heroIllustration} alt="Kally AI" className="w-10 h-10 object-contain" />
                 </div>
                 <div className="text-center">
-                  <p className="font-display text-lg font-bold text-primary-foreground">Amazon Support</p>
+                  <p className="font-display text-lg text-primary-foreground">Amazon Support</p>
                   <p className="font-mono-label text-primary-foreground/50 mt-1">Kally · AI Voice Agent</p>
                 </div>
 
                 {/* Timer */}
-                <p className="font-mono text-2xl text-primary font-bold tracking-wider" style={{ textShadow: "0 0 20px hsla(25, 95%, 53%, 0.4)" }}>
+                <p className="font-mono text-2xl text-primary font-bold tracking-wider" style={{ textShadow: "0 0 20px hsla(24, 94%, 50%, 0.4)" }}>
                   02:34
                 </p>
 

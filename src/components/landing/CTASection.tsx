@@ -11,7 +11,7 @@ const CTASection = () => {
         <div className="container mx-auto px-6 flex flex-wrap items-center justify-center gap-4">
           <span className="font-mono-label text-muted-foreground">Powered by</span>
           {techChips.map((t) => (
-            <span key={t} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card border border-border font-mono-sm text-muted-foreground">
+            <span key={t} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card border border-border text-sm font-medium text-muted-foreground">
               <span className="w-1.5 h-1.5 rounded-full bg-primary/40" />
               {t}
             </span>
@@ -27,14 +27,14 @@ const CTASection = () => {
             Stop dreading the{" "}
             <span className="italic text-primary">phone call</span>
           </h2>
-          <p className="font-mono-sm text-background/50 mb-8 max-w-md mx-auto">
+          <p className="text-sm font-medium text-background/50 mb-8 max-w-md mx-auto">
             Let Kally handle the hold music, the transfers, and the awkward conversations.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 h-12 px-4 rounded-xl bg-background/10 border border-background/20 text-background placeholder:text-background/30 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-body transition-all"
+              className="flex-1 h-12 px-4 rounded-2xl bg-background/10 border border-background/20 text-background placeholder:text-background/30 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-body transition-all"
             />
             <Button variant="hero" size="lg" className="gap-2">
               Get Early Access <ArrowRight size={18} />

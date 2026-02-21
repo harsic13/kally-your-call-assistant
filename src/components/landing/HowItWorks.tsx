@@ -4,7 +4,7 @@ const steps = [
   {
     icon: Mic,
     title: "Tell Kally what you need",
-    desc: "Type or speak your request — \"Get a refund from Amazon for my broken headphones.\"",
+    desc: "Type or speak your request. For example: \"Get a refund from Amazon for my broken headphones.\"",
   },
   {
     icon: Phone,
@@ -28,7 +28,7 @@ const HowItWorks = () => {
     <section id="how-it-works" className="py-20 relative">
       <div className="container mx-auto px-6">
         <div className="text-center mb-14">
-          <p className="font-mono-label text-primary mb-3">— How it Works —</p>
+          <p className="font-mono-label text-primary mb-3">How it Works</p>
           <h2 className="font-display text-page-title text-foreground">
             Four steps, then you're done
           </h2>
@@ -37,9 +37,9 @@ const HowItWorks = () => {
         <div className="grid md:grid-cols-4 gap-6">
           {steps.map((step, i) => (
             <div key={i} className="relative group">
-              <div className="bg-card rounded-2xl p-6 border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg h-full">
+              <div className="bg-card rounded-3xl p-6 border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg h-full">
                 <p className="font-mono-label text-muted-foreground mb-4">0{i + 1}</p>
-                <div className="w-12 h-12 rounded-xl bg-primary-dim flex items-center justify-center mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-primary-dim flex items-center justify-center mb-4">
                   <step.icon size={22} className="text-primary" />
                 </div>
                 <h3 className="font-display text-card-title text-card-foreground mb-2">{step.title}</h3>

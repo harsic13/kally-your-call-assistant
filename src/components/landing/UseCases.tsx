@@ -12,7 +12,7 @@ const cases = [
     icon: Package,
     situation: "Missing Order",
     title: "Get a refund on lost package",
-    quote: "\"Kally, call Amazon about order #4821 — headphones never arrived. Get a refund.\"",
+    quote: "\"Kally, call Amazon about order #4821. Headphones never arrived. Get a refund.\"",
     outcome: "Full refund of $89.99 processed, arrives in 3-5 business days",
   },
   {
@@ -31,7 +31,7 @@ const UseCases = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-14">
-          <p className="font-mono-label text-primary mb-3">— Use Cases —</p>
+          <p className="font-mono-label text-primary mb-3">Use Cases</p>
           <h2 className="font-display text-page-title text-foreground">
             Real scenarios, real results
           </h2>
@@ -41,10 +41,10 @@ const UseCases = () => {
           {cases.map((c, i) => (
             <div
               key={i}
-              className="bg-card rounded-2xl p-6 border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="bg-card rounded-3xl p-6 border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-primary-dim flex items-center justify-center">
+                <div className="w-10 h-10 rounded-2xl bg-primary-dim flex items-center justify-center">
                   <c.icon size={20} className="text-primary" />
                 </div>
                 <span className="font-mono-label text-muted-foreground">{c.situation}</span>
