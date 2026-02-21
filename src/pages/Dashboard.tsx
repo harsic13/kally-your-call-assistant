@@ -17,6 +17,48 @@ const initialTasks: Task[] = [
   { id: "5", title: "Remind Jake about 7am standup", category: "Mundane", status: "done", icon: "alarm", done: true },
 ];
 
+// Tasks mapped by date offset from today for calendar selection
+const generateDateTasks = (): Record<string, Task[]> => {
+  const today = new Date();
+  const fmt = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+
+  const d = (offset: number) => {
+    const date = new Date(today);
+    date.setDate(date.getDate() + offset);
+    return fmt(date);
+  };
+
+  return {
+    [d(0)]: initialTasks,
+    [d(-1)]: [
+      { id: "y1", title: "Follow up on insurance claim", category: "Support", status: "done", icon: "package", done: true },
+      { id: "y2", title: "Book dentist appointment", category: "Booking", status: "done", icon: "alarm", done: true },
+      { id: "y3", title: "Order groceries from Whole Foods", category: "Mundane", status: "done", icon: "food", done: true },
+    ],
+    [d(-2)]: [
+      { id: "p1", title: "Call Verizon about plan upgrade", category: "Support", status: "done", icon: "package", done: true },
+      { id: "p2", title: "Send birthday flowers to Mom", category: "Mundane", status: "done", icon: "alarm", done: true },
+    ],
+    [d(1)]: [
+      { id: "t1", title: "Schedule car service at Tesla", category: "Booking", status: "queued", icon: "plane", done: false },
+      { id: "t2", title: "Renew gym membership", category: "Mundane", status: "queued", icon: "alarm", done: false },
+      { id: "t3", title: "Book flight to NYC next Friday", category: "Booking", status: "queued", icon: "plane", done: false },
+    ],
+    [d(2)]: [
+      { id: "f1", title: "Pick up dry cleaning", category: "Mundane", status: "queued", icon: "package", done: false },
+      { id: "f2", title: "Reserve campsite at Yosemite", category: "Booking", status: "queued", icon: "food", done: false },
+    ],
+    [d(-3)]: [
+      { id: "w1", title: "Dispute charge with Chase bank", category: "Support", status: "done", icon: "package", done: true },
+      { id: "w2", title: "Return package to Amazon locker", category: "Mundane", status: "done", icon: "package", done: true },
+      { id: "w3", title: "Book spa appointment for weekend", category: "Booking", status: "done", icon: "film", done: true },
+      { id: "w4", title: "Call landlord about leak", category: "Support", status: "done", icon: "alarm", done: true },
+    ],
+  };
+};
+
+const dateTasks = generateDateTasks();
+
 const navTabs = ["Tasks", "Threads", "Post-Call", "Escalation"];
 const filterTabs = ["All", "Mundane", "Support", "Booking"];
 
@@ -48,7 +90,16 @@ const Dashboard = () => {
     if (task) setCallModal({ open: true, title: task.title, icon: task.icon });
   };
 
-  const filteredTasks = tasks.filter((t) => filter === "All" || t.category === filter);
+  const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+  const selectedStr = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}`;
+  const isToday = todayStr === selectedStr;
+
+  // Load tasks for selected date
+  const dateLevelTasks = dateTasks[selectedStr];
+  const displayTasks = dateLevelTasks || [];
+  const selectedDateLabel = selectedDate.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" }).toUpperCase();
+
+  const filteredTasks = displayTasks.filter((t) => filter === "All" || t.category === filter);
 
   const grouped = filteredTasks.reduce<Record<string, Task[]>>((acc, t) => {
     const key = t.done ? "done" : t.status;
@@ -60,8 +111,6 @@ const Dashboard = () => {
   const sortedGroups = Object.entries(grouped).sort(
     ([a], [b]) => (statusOrder[a as keyof typeof statusOrder] ?? 99) - (statusOrder[b as keyof typeof statusOrder] ?? 99)
   );
-
-  const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
   const addTask = () => {
     if (!newTask.trim()) return;
@@ -123,8 +172,8 @@ const Dashboard = () => {
             <div className="flex-1 overflow-y-auto p-6">
               <div className="flex items-end justify-between mb-6">
                 <div>
-                  <p className="font-mono-label text-muted-foreground mb-1">TODAY · {dateLabel} · {tasks.filter(t => !t.done).length} TASKS</p>
-                  <h1 className="font-display text-page-title text-foreground">Today</h1>
+                   <p className="font-mono-label text-muted-foreground mb-1">{selectedDateLabel} · {displayTasks.filter(t => !t.done).length} TASKS</p>
+                   <h1 className="font-display text-page-title text-foreground">{isToday ? "Today" : selectedDate.toLocaleDateString("en-US", { month: "short", day: "numeric" })}</h1>
                 </div>
               </div>
 
@@ -176,24 +225,28 @@ const Dashboard = () => {
             </div>
 
             <div className="hidden lg:block w-[300px] border-l border-border overflow-y-auto p-4 space-y-4">
-              <CalendarWidget selectedDate={selectedDate} onSelectDate={setSelectedDate} taskDates={[todayStr]} />
-              <div>
-                <p className="font-mono-label text-muted-foreground mb-3">TODAY'S TASKS</p>
-                <div className="space-y-2">
-                  {tasks.map((task) => {
-                    const icons = { package: Package, film: Film, food: UtensilsCrossed, plane: Plane, alarm: AlarmClock };
-                    const Icon = icons[task.icon];
-                    const statusColors: Record<string, string> = { escalated: "text-destructive", active: "text-success", queued: "text-secondary-foreground", done: "text-muted-foreground" };
-                    return (
-                      <div key={task.id} className="flex items-center gap-2 py-1.5">
-                        <Icon size={14} className="text-primary shrink-0" />
-                        <span className={`text-xs truncate flex-1 ${task.done ? "line-through opacity-50" : "text-foreground"}`}>{task.title}</span>
-                        <span className={`font-mono-label ${statusColors[task.status]}`}>{task.status}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+               <CalendarWidget selectedDate={selectedDate} onSelectDate={setSelectedDate} taskDates={Object.keys(dateTasks)} />
+               <div>
+                 <p className="font-mono-label text-muted-foreground mb-3">{isToday ? "TODAY'S" : selectedDate.toLocaleDateString("en-US", { month: "short", day: "numeric" }).toUpperCase()} TASKS</p>
+                 {displayTasks.length === 0 ? (
+                   <p className="text-xs text-muted-foreground">No tasks for this date</p>
+                 ) : (
+                   <div className="space-y-2">
+                     {displayTasks.map((task) => {
+                       const icons = { package: Package, film: Film, food: UtensilsCrossed, plane: Plane, alarm: AlarmClock };
+                       const Icon = icons[task.icon];
+                       const statusColors: Record<string, string> = { escalated: "text-destructive", active: "text-success", queued: "text-secondary-foreground", done: "text-muted-foreground" };
+                       return (
+                         <div key={task.id} className="flex items-center gap-2 py-1.5">
+                           <Icon size={14} className="text-primary shrink-0" />
+                           <span className={`text-xs truncate flex-1 ${task.done ? "line-through opacity-50" : "text-foreground"}`}>{task.title}</span>
+                           <span className={`font-mono-label ${statusColors[task.status]}`}>{task.status}</span>
+                         </div>
+                       );
+                     })}
+                   </div>
+                 )}
+               </div>
             </div>
           </>
         )}
