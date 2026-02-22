@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Emily AI - Your Personal Assistant
 
 ## Project info
 
